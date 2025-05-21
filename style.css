@@ -15,22 +15,47 @@ body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
+  line-height: 1.5;
 }
 
-header {
-  background: var(--surface);
-  padding: 1rem;
-  border-bottom: 1px solid var(--border);
+.app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: var(--surface);
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
 }
 
-button {
+.app-header .left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
+}
+
+.brand-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.app-title {
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
+  flex-grow: 1;
+}
+
+button#connect-wallet {
   background: var(--accent);
-  color: black;
-  padding: 10px 14px;
   border: none;
+  color: black;
+  font-weight: bold;
+  padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
 }
@@ -38,9 +63,8 @@ button {
 .nav-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 2px;
   background: var(--surface);
-  padding: 8px;
+  padding: 4px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -48,9 +72,8 @@ button {
   padding: 12px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s;
-  border-radius: 8px;
-  user-select: none;
+  transition: background 0.2s ease;
+  border-radius: 6px;
 }
 
 .nav-item.active {
@@ -59,62 +82,80 @@ button {
 }
 
 .dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
   padding: 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
 }
 
 .card {
   background: var(--surface);
-  border-radius: 12px;
-  padding: 1.5rem;
   border: 1px solid var(--border);
-}
-
-.gas-meter {
-  height: 120px;
-  background: linear-gradient(90deg, var(--success), var(--warning), var(--danger));
-  border-radius: 8px;
-  margin: 1rem 0;
-  position: relative;
-}
-
-#gas-needle {
-  position: absolute;
-  width: 2px;
-  height: 100%;
-  background: white;
-  left: 0%;
-  transition: left 0.5s ease;
+  border-radius: 12px;
+  padding: 1rem;
 }
 
 .tag {
-  display: inline-block;
-  padding: 4px 12px;
+  padding: 4px 10px;
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: bold;
+  display: inline-block;
 }
 
-.tag.success { background: var(--success); color: black; }
-.tag.warning { background: var(--warning); color: black; }
-.tag.danger { background: var(--danger); color: white; }
+.tag.success {
+  background: var(--success);
+  color: black;
+}
 
-.footer {
-  text-align: center;
-  font-size: 0.8rem;
-  padding: 1rem;
-  color: #888;
+.tag.warning {
+  background: var(--warning);
+  color: black;
+}
+
+.tag.danger {
+  background: var(--danger);
+  color: white;
+}
+
+.gas-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 24px;
+  background: linear-gradient(to right, var(--success), var(--warning), var(--danger));
+  overflow: hidden;
+}
+
+.gas-fill {
+  height: 100%;
+  width: 100%;
+  animation: pulseGas 20s linear infinite;
+}
+
+.gas-text {
+  position: absolute;
+  top: -22px;
+  right: 10px;
+  font-size: 0.75rem;
+  color: var(--accent);
+}
+
+@keyframes pulseGas {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
 }
 
 @media (max-width: 768px) {
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
   .nav-container {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .app-title {
+    font-size: 0.9rem;
+  }
+
+  .brand-name {
+    font-size: 1rem;
   }
 }
