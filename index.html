@@ -2,88 +2,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WarpAI – Onchain Tracker</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WarpAI | Onchain Activity Tracker</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="/assets/logo.png" />
+  <!-- Farcaster Frame Meta -->
+  <meta property="og:type" content="farcaster-frame" />
+  <meta property="fc:frame" content="vNext" />
+  <meta property="fc:frame:button:1" content="Enter WarpAI" />
+  <meta property="fc:frame:post_url" content="https://onchain2.vercel.app/api/frame" />
+  <meta property="og:image" content="https://onchain2.vercel.app/assets/frame.png" />
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="assets/warp_logo.png" alt="WarpAI Logo"/>
-      <div>
-        <strong>WarpAI</strong>
-        <div class="subtitle">Onchain Activity Tracker</div>
-      </div>
+    <img src="/assets/logo.png" alt="WarpAI Logo" class="logo" />
+    <div class="title-wrap">
+      <h1>WarpAI</h1>
+      <h2>Onchain Activity Tracker</h2>
     </div>
-    <button class="connect-btn" id="connect-wallet">Connect Wallet</button>
+    <button id="connect">Connect</button>
   </header>
 
-  <div class="gas-bar">
-    <div class="needle" id="gas-needle"></div>
-    <span id="gwei-value">-- Gwei</span>
+  <div id="gas-bar">
+    <div id="gas-needle"></div>
+    <span id="gwei-value">Loading...</span>
   </div>
 
   <nav>
-    <div class="tab active" data-tab="overview">Overview</div>
-    <div class="tab" data-tab="wallet">Wallet</div>
-    <div class="tab" data-tab="leaderboard">Leaderboard</div>
-    <div class="tab" data-tab="rewards">Rewards</div>
-    <div class="tab" data-tab="settings">Settings</div>
+    <button class="tab-btn active" data-tab="overview">Overview</button>
+    <button class="tab-btn" data-tab="leaderboard">Leaderboard</button>
+    <button class="tab-btn" data-tab="rewards">Rewards</button>
+    <button class="tab-btn" data-tab="wallet">Wallet</button>
+    <button class="tab-btn" data-tab="settings">Settings</button>
   </nav>
 
-  <main class="main">
-    <section id="overview" class="tab-content active">
-      <div class="card">
-        <h2>Protocol Overview</h2>
-        <p>Total Volume: <span class="badge success">542.1 ETH</span></p>
-        <p>Active Users: <span class="badge warning">1,234</span></p>
-        <p>Network Fees: <span class="badge danger">12.4 ETH</span></p>
-      </div>
+  <main>
+    <section id="overview" class="tab active">
+      <h3>📊 Onchain Overview</h3>
+      <ul>
+        <li>Total Earnings: <span class="value">$0.00</span></li>
+        <li>Total Gas: <span class="value">-- ETH</span></li>
+        <li>Last TX: <span class="value">--</span></li>
+        <li>XP Claimed: <span class="value">--</span></li>
+        <li>Streak: <span class="value">0 days</span></li>
+      </ul>
     </section>
 
-    <section id="wallet" class="tab-content">
-      <div class="card">
-        <h2>Your Wallet</h2>
-        <p>Status: <span id="wallet-status">Not Connected</span></p>
-        <button>Check Address</button>
-      </div>
+    <section id="leaderboard" class="tab">
+      <h3>🏆 Top Wallets</h3>
+      <ul id="leaderboard-list">
+        <li>Loading...</li>
+      </ul>
     </section>
 
-    <section id="leaderboard" class="tab-content">
-      <div class="card">
-        <h2>Leaderboard</h2>
-        <p>#1 0xabc...123 - 1520 XP</p>
-        <p>#2 0xdef...456 - 1410 XP</p>
-      </div>
+    <section id="rewards" class="tab">
+      <h3>🎁 Claim Daily Rewards</h3>
+      <button id="claim-xp">Claim XP</button>
+      <p id="claim-result"></p>
     </section>
 
-    <section id="rewards" class="tab-content">
-      <div class="card">
-        <h2>Rewards</h2>
-        <p>Claim your daily XP and streak bonuses!</p>
-        <button>Claim XP</button>
-      </div>
+    <section id="wallet" class="tab">
+      <h3>👛 Wallet Summary</h3>
+      <p>Address: <span id="wallet-address">Not Connected</span></p>
+      <p>WarpAI Token: <span id="warp-token">--</span></p>
     </section>
 
-    <section id="settings" class="tab-content">
-      <div class="card">
-        <h2>Settings</h2>
-        <label>Language:
-          <select id="language">
-            <option>EN</option>
-            <option>SV</option>
-          </select>
-        </label>
-        <label>Theme:
-          <select id="theme">
-            <option>Dark</option>
-            <option>Light</option>
-          </select>
-        </label>
-      </div>
+    <section id="settings" class="tab">
+      <h3>⚙️ Customize</h3>
+      <label>
+        Language:
+        <select id="lang">
+          <option value="en">EN</option>
+          <option value="sv">SV</option>
+        </select>
+      </label>
+      <label>
+        Theme:
+        <select id="theme">
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+          <option value="neon">Neon</option>
+        </select>
+      </label>
     </section>
   </main>
+
+  <footer>
+    <p>Built by <a href="https://warpcast.com/warpaiapp" target="_blank">@warpaiapp</a> • Token: 
+      <a href="https://zora.co/coin/base:0x8ab57bdfc4e900b62f309bfaa6e1802755330ca6" target="_blank">WARP</a>
+    </p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
