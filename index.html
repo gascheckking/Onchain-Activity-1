@@ -3,68 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WarpAI – Onchain Activity Tracker</title>
+  <title>WarpAI – Onchain Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="app-header">
-  <div class="logo-area">
-    <img src="assets/warp-logo.png" alt="WarpAI Logo" class="logo-icon" />
-    <span class="brand-name">WarpAI</span>
-  </div>
-  <h1 class="sub-heading">Onchain Activity Tracker</h1>
-  <button id="connect-wallet" class="wallet-button">Connect Wallet</button>
-</header>
-
-  <nav class="nav-container">
-    <div class="nav-item active" data-tab="overview">Overview</div>
-    <div class="nav-item" data-tab="leaderboard">Leaderboard</div>
-    <div class="nav-item" data-tab="wallet">Wallet</div>
-    <div class="nav-item" data-tab="rewards">Rewards</div>
-    <div class="nav-item" data-tab="settings">Settings</div>
-  </nav>
-
-  <main class="dashboard-grid">
-    <!-- Overview -->
-    <div class="card" data-tab-content="overview">
-      <h2>🚀 Protocol Overview</h2>
-      <p>Total Volume: <span class="tag success">542.1 ETH</span></p>
-      <p>Active Users: <span class="tag warning">1,234</span></p>
-      <p>Network Fees: <span class="tag danger">12.4 ETH</span></p>
-    </div>
-
-    <!-- Leaderboard -->
-    <div class="card" data-tab-content="leaderboard">
-      <h2>🏆 Leaderboard</h2>
-      <div id="leaderboard-list">
-        <p>Loading...</p>
+  <header>
+    <div class="logo">
+      <img src="assets/warp_logo.png" alt="WarpAI Logo"/>
+      <div>
+        <strong>WarpAI</strong>
+        <div class="subtitle">Onchain Activity Tracker</div>
       </div>
     </div>
+    <button class="connect-btn" id="connect-wallet">Connect Wallet</button>
+  </header>
 
-    <!-- Wallet -->
-    <div class="card" data-tab-content="wallet">
-      <h2>👛 Wallet</h2>
-      <p>Connected: <span class="tag">Not connected</span></p>
-    </div>
-
-    <!-- Rewards -->
-    <div class="card" data-tab-content="rewards">
-      <h2>🎁 Rewards</h2>
-      <p>Claim daily bonuses, gas savings, and more.</p>
-    </div>
-
-    <!-- Settings -->
-    <div class="card" data-tab-content="settings">
-      <h2>⚙️ Settings</h2>
-      <p>Coming soon...</p>
-    </div>
-  </main>
-
-  <!-- Gas Bar -->
   <div class="gas-bar">
-    <div class="gas-fill" id="gas-fill"></div>
-    <div class="gas-text" id="gas-text">Live Gas: -- Gwei</div>
+    <div class="needle" id="gas-needle"></div>
+    <span id="gwei-value">-- Gwei</span>
   </div>
+
+  <nav>
+    <div class="tab active" data-tab="overview">Overview</div>
+    <div class="tab" data-tab="wallet">Wallet</div>
+    <div class="tab" data-tab="leaderboard">Leaderboard</div>
+    <div class="tab" data-tab="rewards">Rewards</div>
+    <div class="tab" data-tab="settings">Settings</div>
+  </nav>
+
+  <main class="main">
+    <section id="overview" class="tab-content active">
+      <div class="card">
+        <h2>Protocol Overview</h2>
+        <p>Total Volume: <span class="badge success">542.1 ETH</span></p>
+        <p>Active Users: <span class="badge warning">1,234</span></p>
+        <p>Network Fees: <span class="badge danger">12.4 ETH</span></p>
+      </div>
+    </section>
+
+    <section id="wallet" class="tab-content">
+      <div class="card">
+        <h2>Your Wallet</h2>
+        <p>Status: <span id="wallet-status">Not Connected</span></p>
+        <button>Check Address</button>
+      </div>
+    </section>
+
+    <section id="leaderboard" class="tab-content">
+      <div class="card">
+        <h2>Leaderboard</h2>
+        <p>#1 0xabc...123 - 1520 XP</p>
+        <p>#2 0xdef...456 - 1410 XP</p>
+      </div>
+    </section>
+
+    <section id="rewards" class="tab-content">
+      <div class="card">
+        <h2>Rewards</h2>
+        <p>Claim your daily XP and streak bonuses!</p>
+        <button>Claim XP</button>
+      </div>
+    </section>
+
+    <section id="settings" class="tab-content">
+      <div class="card">
+        <h2>Settings</h2>
+        <label>Language:
+          <select id="language">
+            <option>EN</option>
+            <option>SV</option>
+          </select>
+        </label>
+        <label>Theme:
+          <select id="theme">
+            <option>Dark</option>
+            <option>Light</option>
+          </select>
+        </label>
+      </div>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
