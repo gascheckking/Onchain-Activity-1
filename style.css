@@ -1,13 +1,9 @@
 :root {
-  --bg: #0a0c17;
-  --surface: #1a1d2e;
+  --bg: #0a0a0a;
+  --text: #e5e5e5;
   --accent: #00ffc3;
-  --text: #e2e8f0;
-  --primary: #3b82f6;
+  --highlight: #3b82f6;
   --danger: #ef4444;
-  --success: #5cff6c;
-  --warning: #ffd966;
-  --border: #2d3748;
 }
 
 body {
@@ -19,121 +15,112 @@ body {
 
 header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: var(--surface);
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
+  justify-content: space-between;
+  background: #111;
+  padding: 1rem;
+  border-bottom: 1px solid #333;
 }
 
 .logo {
-  display: flex;
-  gap: 10px;
-  align-items: center;
+  height: 40px;
 }
 
-.logo img {
-  height: 32px;
+.title-wrap {
+  flex-grow: 1;
+  text-align: center;
 }
 
-.subtitle {
-  font-size: 0.75rem;
-  color: var(--text);
-  opacity: 0.8;
-}
-
-.connect-btn {
-  background: var(--accent);
-  border: none;
-  border-radius: 6px;
-  padding: 8px 12px;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.gas-bar {
-  position: relative;
-  height: 12px;
-  background: linear-gradient(to right, var(--success), var(--warning), var(--danger));
+h1 {
   margin: 0;
-}
-
-.needle {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: white;
-  left: 0%;
-  transition: left 0.4s ease;
-}
-
-#gwei-value {
-  font-size: 0.8rem;
-  padding: 4px 8px;
-  display: block;
-  text-align: right;
+  font-size: 1.4rem;
   color: var(--accent);
+}
+
+h2 {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+#connect {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 nav {
   display: flex;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-}
-
-.tab {
-  flex: 1;
+  justify-content: space-around;
+  background: #151515;
   padding: 10px;
-  text-align: center;
+  border-bottom: 1px solid #333;
+}
+
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 0.9rem;
+  padding: 6px;
   cursor: pointer;
-  transition: background 0.2s;
 }
 
-.tab.active {
-  background: var(--accent);
-  color: black;
+.tab-btn.active {
+  color: var(--accent);
+  font-weight: bold;
 }
 
-.main {
+main {
   padding: 1rem;
 }
 
-.card {
-  background: var(--surface);
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 16px;
-  border: 1px solid var(--border);
-}
-
-.badge {
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-
-.success {
-  background: var(--success);
-  color: black;
-}
-
-.warning {
-  background: var(--warning);
-  color: black;
-}
-
-.danger {
-  background: var(--danger);
-  color: white;
-}
-
-.tab-content {
+.tab {
   display: none;
 }
 
-.tab-content.active {
+.tab.active {
   display: block;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+.value {
+  font-weight: bold;
+  color: var(--highlight);
+}
+
+#gas-bar {
+  position: relative;
+  height: 8px;
+  background: linear-gradient(to right, var(--highlight), var(--accent), var(--danger));
+  margin: 0;
+}
+
+#gas-needle {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: white;
+  transition: left 0.3s ease;
+}
+
+#gwei-value {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  margin-top: 4px;
 }
