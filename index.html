@@ -3,73 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WarpAI | Onchain Dashboard</title>
+  <title>WarpAI – Onchain Activity Tracker</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>WarpAI</h1>
+  <header class="app-header">
+    <div class="left">
+      <img src="assets/logo.png" alt="WarpAI Logo" class="logo" />
+      <span class="brand-name">WarpAI</span>
+    </div>
+    <h1 class="app-title">Onchain Activity Tracker</h1>
     <button id="connect-wallet">Connect Wallet</button>
   </header>
 
   <nav class="nav-container">
     <div class="nav-item active" data-tab="overview">Overview</div>
-    <div class="nav-item" data-tab="gas">Gas</div>
     <div class="nav-item" data-tab="leaderboard">Leaderboard</div>
     <div class="nav-item" data-tab="wallet">Wallet</div>
+    <div class="nav-item" data-tab="rewards">Rewards</div>
     <div class="nav-item" data-tab="settings">Settings</div>
   </nav>
 
   <main class="dashboard-grid">
     <!-- Overview -->
     <div class="card" data-tab-content="overview">
-      <h2>Protocol Overview</h2>
+      <h2>🚀 Protocol Overview</h2>
       <p>Total Volume: <span class="tag success">542.1 ETH</span></p>
       <p>Active Users: <span class="tag warning">1,234</span></p>
       <p>Network Fees: <span class="tag danger">12.4 ETH</span></p>
     </div>
 
-    <!-- Gas -->
-    <div class="card" data-tab-content="gas">
-      <h2>Live Gas Tracker</h2>
-      <div class="gas-meter">
-        <div id="gas-needle"></div>
-      </div>
-      <div id="current-gas" class="tag">Loading...</div>
-    </div>
-
     <!-- Leaderboard -->
     <div class="card" data-tab-content="leaderboard">
-      <h2>Zora Leaderboard</h2>
-      <div id="leaderboard-list">Loading...</div>
+      <h2>🏆 Leaderboard</h2>
+      <div id="leaderboard-list">
+        <p>Loading...</p>
+      </div>
     </div>
 
     <!-- Wallet -->
     <div class="card" data-tab-content="wallet">
-      <h2>Wallet Summary</h2>
-      <div id="wallet-info">
-        <p>Connected: <span class="tag">No</span></p>
-        <div class="leaderboard-item">
-          <span>Your Rank</span>
-          <span>#--</span>
-        </div>
-      </div>
+      <h2>👛 Wallet</h2>
+      <p>Connected: <span class="tag">Not connected</span></p>
+    </div>
+
+    <!-- Rewards -->
+    <div class="card" data-tab-content="rewards">
+      <h2>🎁 Rewards</h2>
+      <p>Claim daily bonuses, gas savings, and more.</p>
     </div>
 
     <!-- Settings -->
     <div class="card" data-tab-content="settings">
-      <h2>Settings</h2>
-      <p>Language, Theme, More soon...</p>
+      <h2>⚙️ Settings</h2>
+      <p>Coming soon...</p>
     </div>
   </main>
 
-  <footer class="footer">
-    <p>
-      Created by <a href="https://zora.co/0xa8b817f09702c8d77fdb6d7d677a30cba5c9d7b9" target="_blank">WarpAI</a>
-      • Token:
-      <a href="https://zora.co/coin/base:0x8ab57bdfc4e900b62f309bfaa6e1802755330ca6" target="_blank">View</a>
-    </p>
-  </footer>
+  <!-- Gas Bar -->
+  <div class="gas-bar">
+    <div class="gas-fill" id="gas-fill"></div>
+    <div class="gas-text" id="gas-text">Live Gas: -- Gwei</div>
+  </div>
 
   <script src="script.js"></script>
 </body>
