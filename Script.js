@@ -1,25 +1,43 @@
-document.querySelectorAll(".tab").forEach(tab => {
-  tab.addEventListener("click", () => {
-    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-    document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
-    tab.classList.add("active");
-    document.getElementById(tab.dataset.tab).classList.add("active");
+document.addEventListener("DOMContentLoaded", () => {
+  const tabs = document.querySelectorAll(".tab-btn");
+  const sections = document.querySelectorAll(".tab");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      tabs.forEach((t) => t.classList.remove("active"));
+      sections.forEach((s) => s.classList.remove("active"));
+      tab.classList.add("active");
+      const id = tab.dataset.tab;
+      document.getElementById(id).classList.add("active");
+    });
   });
-});
 
-// Gas updater (simulated)
-function updateGasMeter() {
-  const gwei = Math.floor(Math.random() * 80) + 1;
-  const needle = document.getElementById("gas-needle");
-  const label = document.getElementById("gwei-value");
-  const position = Math.min(gwei, 80);
-  needle.style.left = `${position}%`;
-  label.innerText = `${gwei} Gwei`;
-}
-setInterval(updateGasMeter, 3000);
-updateGasMeter();
+  // Placeholder gas updater until API is added
+  function fakeGas() {
+    const val = Math.random() * 100;
+    document.getElementById("gas-needle").style.left = `${val}%`;
+    document.getElementById("gwei-value").innerText = `${val.toFixed(1)} Gwei`;
+  }
+  fakeGas();
+  setInterval(fakeGas, 30000);
 
-// Wallet Connect placeholder
-document.getElementById("connect-wallet").addEventListener("click", () => {
-  document.getElementById("wallet-status").innerText = "Connected: 0x...1337";
+  // Claim XP mock
+  document.getElementById("claim-xp").addEventListener("click", () => {
+    const msg = "✅ You claimed 20 XP!";
+    document.getElementById("claim-result").innerText = msg;
+  });
+
+  // Connect wallet (mocked)
+  document.getElementById("connect").addEventListener("click", () => {
+    document.getElementById("wallet-address").innerText = "0xa42...bb52";
+    document.getElementById("warp-token").innerText = "1337 WARP";
+  });
+
+  // Load leaderboard (mocked)
+  const lb = document.getElementById("leaderboard-list");
+  lb.innerHTML = `
+    <li>1. 0x123...abcd – 420 XP</li>
+    <li>2. 0x456...ef01 – 369 XP</li>
+    <li>3. 0x789...7890 – 256 XP</li>
+  `;
 });
